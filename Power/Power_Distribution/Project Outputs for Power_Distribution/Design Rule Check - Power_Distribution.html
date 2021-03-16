@@ -1,0 +1,441 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD20\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">10-12-2020</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">11:53:03</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:02</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc" class="file"><acronym title="C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc">C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">35</td></tr>
+</table>
+</td>
+</table><a name="IDOVGHKICM21SKLNTRFOSRQ0BL3P13RQWC1MKBCBF40QEIXRJLSPFJ"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDS2QENOGI2ZYQP5PJGOXXH2L11KGQ0LMCVEJCPSNDZ4B1WV3K5SWP">Clearance Constraint (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDPBYZ3ONKBNKKFMWQHCFDQV3VJIHTHESRXCI4ZUOQZ4N5AVA1ES4G">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID5BEHHWBYZYPHCVQ1FQZ14L1XWFV43LZFIKGAMXBMXYSNZVOMIO0C">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDGMOJ0EJPPEIGC2PBXEZNXNM4TNIUP3POSPGD2KJ11Z04ADF2JKGO">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGL1W0WQZKCJGGGSDAHNUHZ5ZDGTSDNDVVP3BML3I5UDLISMLPGJ">Width Constraint (Min=0.254mm) (Max=2mm) (Preferred=0.254mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDQLHBTULIHD0ZBW2S43BJFT21FCJCBE114I5223OY11COGQY5VLYE">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDINNJ3YJRZJIVDGATXPZMKNIHVCWPCJBVNEKDYQJJC2KXBCP423GF">Hole Size Constraint (Min=0.025mm) (Max=4mm) (All)</a></td>
+<td class="column2">8</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDCN5QV4534QJNNL4U15N2IDMQUGOQ1RWGEJZVRVEUGLTED5T3SVJF">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDCAM1CHDHHQSADED2SGVG3IUYZERMWELWTVXKUONM3AMICRTXMLSM">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDLITJ0TYLCJJ0OZ3M3KWAGPSESN5LZGNM1RKRLHNVDJYLHHNPSMEJ">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</a></td>
+<td class="column2">16</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID3AHNHCJZ41GBNO41RAPM3LTWIMVTWLHMHD43KEJ2V3IXK2MB3CYH">Silk to Silk (Clearance=0.254mm) (All),(All)</a></td>
+<td class="column2">11</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDDC02ID1YQM1UFRZVNKFR15LFMFX5BRQGZPVSEFNM5IBFUO54AQED">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDY0QVO4NT4HJIL0BPSGCE2ASSCD0TLLE0IRTU3GEDZGL0HCFI5XKM">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">35</td>
+</tr>
+</table><br><a name="IDINNJ3YJRZJIVDGATXPZMKNIHVCWPCJBVNEKDYQJJC2KXBCP423GF"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Hole Size Constraint (Min=0.025mm) (Max=4mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1540.714mil|Location2.X=1719.129mil|Location1.Y=4072.21mil|Location2.Y=4250.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1540.714mil|Location2.X=1719.129mil|Location1.Y=4072.21mil|Location2.Y=4250.625mil|Absolute=True">Hole Size Constraint: (4.5mm &gt; 4mm) Pad J-1(16mm,80.3mm) on Multi-Layer Actual Hole Size = 4.5mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2536.777mil|Location2.X=2715.192mil|Location1.Y=4072.21mil|Location2.Y=4250.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2536.777mil|Location2.X=2715.192mil|Location1.Y=4072.21mil|Location2.Y=4250.625mil|Absolute=True">Hole Size Constraint: (4.5mm &gt; 4mm) Pad J-1(41.3mm,80.3mm) on Multi-Layer Actual Hole Size = 4.5mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3556.462mil|Location2.X=3734.877mil|Location1.Y=4072.21mil|Location2.Y=4250.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3556.462mil|Location2.X=3734.877mil|Location1.Y=4072.21mil|Location2.Y=4250.625mil|Absolute=True">Hole Size Constraint: (4.5mm &gt; 4mm) Pad J-1(67.2mm,80.3mm) on Multi-Layer Actual Hole Size = 4.5mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3591.895mil|Location2.X=3770.31mil|Location1.Y=1182.446mil|Location2.Y=1360.861mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3591.895mil|Location2.X=3770.31mil|Location1.Y=1182.446mil|Location2.Y=1360.861mil|Absolute=True">Hole Size Constraint: (4.5mm &gt; 4mm) Pad J-1(68.1mm,6.9mm) on Multi-Layer Actual Hole Size = 4.5mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1540.714mil|Location2.X=1719.129mil|Location1.Y=4355.674mil|Location2.Y=4534.09mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1540.714mil|Location2.X=1719.129mil|Location1.Y=4355.674mil|Location2.Y=4534.09mil|Absolute=True">Hole Size Constraint: (4.5mm &gt; 4mm) Pad J-2(16mm,87.5mm) on Multi-Layer Actual Hole Size = 4.5mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2536.777mil|Location2.X=2715.192mil|Location1.Y=4355.674mil|Location2.Y=4534.09mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2536.777mil|Location2.X=2715.192mil|Location1.Y=4355.674mil|Location2.Y=4534.09mil|Absolute=True">Hole Size Constraint: (4.5mm &gt; 4mm) Pad J-2(41.3mm,87.5mm) on Multi-Layer Actual Hole Size = 4.5mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3556.462mil|Location2.X=3734.877mil|Location1.Y=4355.674mil|Location2.Y=4534.09mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3556.462mil|Location2.X=3734.877mil|Location1.Y=4355.674mil|Location2.Y=4534.09mil|Absolute=True">Hole Size Constraint: (4.5mm &gt; 4mm) Pad J-2(67.2mm,87.5mm) on Multi-Layer Actual Hole Size = 4.5mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3591.895mil|Location2.X=3770.31mil|Location1.Y=1465.91mil|Location2.Y=1644.326mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3591.895mil|Location2.X=3770.31mil|Location1.Y=1465.91mil|Location2.Y=1644.326mil|Absolute=True">Hole Size Constraint: (4.5mm &gt; 4mm) Pad J-2(68.1mm,14.1mm) on Multi-Layer Actual Hole Size = 4.5mm</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDLITJ0TYLCJJ0OZ3M3KWAGPSESN5LZGNM1RKRLHNVDJYLHHNPSMEJ"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1511.216mil|Location2.X=1522.466mil|Location1.Y=4066.028mil|Location2.Y=4077.278mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1511.216mil|Location2.X=1522.466mil|Location1.Y=4066.028mil|Location2.Y=4077.278mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.228mm &lt; 0.254mm) Between Pad J-1(16mm,80.3mm) on Multi-Layer And Track (11.95mm,79.15mm)(12.95mm,78.02mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.228mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1737.377mil|Location2.X=1748.627mil|Location1.Y=4066.028mil|Location2.Y=4077.278mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1737.377mil|Location2.X=1748.627mil|Location1.Y=4066.028mil|Location2.Y=4077.278mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.228mm &lt; 0.254mm) Between Pad J-1(16mm,80.3mm) on Multi-Layer And Track (19.05mm,78.02mm)(20.05mm,79.15mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.228mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2507.279mil|Location2.X=2518.529mil|Location1.Y=4066.028mil|Location2.Y=4077.278mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2507.279mil|Location2.X=2518.529mil|Location1.Y=4066.028mil|Location2.Y=4077.278mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.228mm &lt; 0.254mm) Between Pad J-1(41.3mm,80.3mm) on Multi-Layer And Track (37.25mm,79.15mm)(38.25mm,78.02mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.228mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2733.44mil|Location2.X=2744.69mil|Location1.Y=4066.028mil|Location2.Y=4077.278mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2733.44mil|Location2.X=2744.69mil|Location1.Y=4066.028mil|Location2.Y=4077.278mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.228mm &lt; 0.254mm) Between Pad J-1(41.3mm,80.3mm) on Multi-Layer And Track (44.35mm,78.02mm)(45.35mm,79.15mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.228mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3526.964mil|Location2.X=3538.214mil|Location1.Y=4066.028mil|Location2.Y=4077.278mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3526.964mil|Location2.X=3538.214mil|Location1.Y=4066.028mil|Location2.Y=4077.278mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.228mm &lt; 0.254mm) Between Pad J-1(67.2mm,80.3mm) on Multi-Layer And Track (63.15mm,79.15mm)(64.15mm,78.02mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.228mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3753.125mil|Location2.X=3764.375mil|Location1.Y=4066.028mil|Location2.Y=4077.278mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3753.125mil|Location2.X=3764.375mil|Location1.Y=4066.028mil|Location2.Y=4077.278mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.228mm &lt; 0.254mm) Between Pad J-1(67.2mm,80.3mm) on Multi-Layer And Track (70.25mm,78.02mm)(71.25mm,79.15mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.228mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3562.397mil|Location2.X=3573.647mil|Location1.Y=1176.265mil|Location2.Y=1187.515mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3562.397mil|Location2.X=3573.647mil|Location1.Y=1176.265mil|Location2.Y=1187.515mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.228mm &lt; 0.254mm) Between Pad J-1(68.1mm,6.9mm) on Multi-Layer And Track (64.05mm,5.75mm)(65.05mm,4.62mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.228mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3788.558mil|Location2.X=3799.808mil|Location1.Y=1176.265mil|Location2.Y=1187.515mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3788.558mil|Location2.X=3799.808mil|Location1.Y=1176.265mil|Location2.Y=1187.515mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.228mm &lt; 0.254mm) Between Pad J-1(68.1mm,6.9mm) on Multi-Layer And Track (71.15mm,4.62mm)(72.15mm,5.75mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.228mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1170.989mil|Location2.X=1182.239mil|Location1.Y=1550.684mil|Location2.Y=1561.934mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1170.989mil|Location2.X=1182.239mil|Location1.Y=1550.684mil|Location2.Y=1561.934mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.233mm &lt; 0.254mm) Between Pad J1-1(5.2mm,13.3mm) on Multi-Layer And Track (1.385mm,14.31mm)(16.015mm,14.31mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.233mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1290.794mil|Location2.X=1302.044mil|Location1.Y=1550.282mil|Location2.Y=1561.532mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1290.794mil|Location2.X=1302.044mil|Location1.Y=1550.282mil|Location2.Y=1561.532mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.253mm &lt; 0.254mm) Between Pad J1-2(7.7mm,13.3mm) on Multi-Layer And Track (1.385mm,14.31mm)(16.015mm,14.31mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.253mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1369.534mil|Location2.X=1380.784mil|Location1.Y=1550.282mil|Location2.Y=1561.532mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1369.534mil|Location2.X=1380.784mil|Location1.Y=1550.282mil|Location2.Y=1561.532mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.253mm &lt; 0.254mm) Between Pad J1-3(9.7mm,13.3mm) on Multi-Layer And Track (1.385mm,14.31mm)(16.015mm,14.31mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.253mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1467.96mil|Location2.X=1479.21mil|Location1.Y=1550.282mil|Location2.Y=1561.532mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1467.96mil|Location2.X=1479.21mil|Location1.Y=1550.282mil|Location2.Y=1561.532mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.253mm &lt; 0.254mm) Between Pad J1-4(12.2mm,13.3mm) on Multi-Layer And Track (1.385mm,14.31mm)(16.015mm,14.31mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.253mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3217.8mil|Location2.X=3229.05mil|Location1.Y=3439.257mil|Location2.Y=3450.507mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3217.8mil|Location2.X=3229.05mil|Location1.Y=3439.257mil|Location2.Y=3450.507mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.25mm &lt; 0.254mm) Between Pad J6-1(56.1mm,62.6mm) on Bottom Layer And Track (56.7mm,61.7mm)(56.7mm,63.5mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.25mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3109.532mil|Location2.X=3120.782mil|Location1.Y=3478.627mil|Location2.Y=3489.877mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3109.532mil|Location2.X=3120.782mil|Location1.Y=3478.627mil|Location2.Y=3489.877mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.25mm &lt; 0.254mm) Between Pad J6-3(54.1mm,62.6mm) on Bottom Layer And Track (53.5mm,61.7mm)(53.5mm,63.5mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.25mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2735.517mil|Location2.X=2746.767mil|Location1.Y=3478.627mil|Location2.Y=3489.877mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2735.517mil|Location2.X=2746.767mil|Location1.Y=3478.627mil|Location2.Y=3489.877mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.25mm &lt; 0.254mm) Between Pad J7-1(44.6mm,62.6mm) on Bottom Layer And Track (44mm,61.7mm)(44mm,63.5mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.25mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2843.784mil|Location2.X=2855.034mil|Location1.Y=3439.257mil|Location2.Y=3450.507mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2843.784mil|Location2.X=2855.034mil|Location1.Y=3439.257mil|Location2.Y=3450.507mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.25mm &lt; 0.254mm) Between Pad J7-3(46.6mm,62.6mm) on Bottom Layer And Track (47.2mm,61.7mm)(47.2mm,63.5mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.25mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID3AHNHCJZ41GBNO41RAPM3LTWIMVTWLHMHD43KEJ2V3IXK2MB3CYH"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3169.543mil|Location2.X=3180.793mil|Location1.Y=1831.432mil|Location2.Y=1842.682mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3169.543mil|Location2.X=3180.793mil|Location1.Y=1831.432mil|Location2.Y=1842.682mil|Absolute=True">Silk To Silk Clearance Constraint: (0.223mm &lt; 0.254mm) Between Text "+24V" (53mm,19.5mm) on Top Overlay And Track (51.1mm,21.5mm)(60.7mm,21.5mm) on Top Overlay Silk Text to Silk Clearance [0.223mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3140.025mil|Location2.X=3151.275mil|Location1.Y=1752.249mil|Location2.Y=1763.499mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3140.025mil|Location2.X=3151.275mil|Location1.Y=1752.249mil|Location2.Y=1763.499mil|Absolute=True">Silk To Silk Clearance Constraint: (0.2mm &lt; 0.254mm) Between Text "+24V" (53mm,19.5mm) on Top Overlay And Track (52.55mm,19.05mm)(59.95mm,19.05mm) on Top Overlay Silk Text to Silk Clearance [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2299.471mil|Location2.X=2310.721mil|Location1.Y=1831.432mil|Location2.Y=1842.682mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2299.471mil|Location2.X=2310.721mil|Location1.Y=1831.432mil|Location2.Y=1842.682mil|Absolute=True">Silk To Silk Clearance Constraint: (0.223mm &lt; 0.254mm) Between Text "+3V3" (31.4mm,19.5mm) on Top Overlay And Track (18.5mm,21.5mm)(39.4mm,21.5mm) on Top Overlay Silk Text to Silk Clearance [0.223mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2319.149mil|Location2.X=2330.399mil|Location1.Y=1752.249mil|Location2.Y=1763.499mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2319.149mil|Location2.X=2330.399mil|Location1.Y=1752.249mil|Location2.Y=1763.499mil|Absolute=True">Silk To Silk Clearance Constraint: (0.2mm &lt; 0.254mm) Between Text "+3V3" (31.4mm,19.5mm) on Top Overlay And Track (30.75mm,19.05mm)(38.15mm,19.05mm) on Top Overlay Silk Text to Silk Clearance [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2724.668mil|Location2.X=2735.918mil|Location1.Y=1831.432mil|Location2.Y=1842.682mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2724.668mil|Location2.X=2735.918mil|Location1.Y=1831.432mil|Location2.Y=1842.682mil|Absolute=True">Silk To Silk Clearance Constraint: (0.223mm &lt; 0.254mm) Between Text "+3V3" (42.2mm,19.5mm) on Top Overlay And Track (40.5mm,21.5mm)(50.1mm,21.5mm) on Top Overlay Silk Text to Silk Clearance [0.223mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2744.346mil|Location2.X=2755.596mil|Location1.Y=1752.249mil|Location2.Y=1763.499mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2744.346mil|Location2.X=2755.596mil|Location1.Y=1752.249mil|Location2.Y=1763.499mil|Absolute=True">Silk To Silk Clearance Constraint: (0.2mm &lt; 0.254mm) Between Text "+3V3" (42.2mm,19.5mm) on Top Overlay And Track (41.65mm,19.05mm)(49.05mm,19.05mm) on Top Overlay Silk Text to Silk Clearance [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3806.649mil|Location2.X=3817.899mil|Location1.Y=4472.75mil|Location2.Y=4484mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3806.649mil|Location2.X=3817.899mil|Location1.Y=4472.75mil|Location2.Y=4484mil|Absolute=True">Silk To Silk Clearance Constraint: (0.237mm &lt; 0.254mm) Between Text "+48V" (71.7mm,90.6mm) on Top Overlay And Track (71.25mm,79.15mm)(71.25mm,91.65mm) on Top Overlay Silk Text to Silk Clearance [0.237mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1903.805mil|Location2.X=1915.055mil|Location1.Y=1831.432mil|Location2.Y=1842.682mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1903.805mil|Location2.X=1915.055mil|Location1.Y=1831.432mil|Location2.Y=1842.682mil|Absolute=True">Silk To Silk Clearance Constraint: (0.223mm &lt; 0.254mm) Between Text "+5V" (21.6mm,19.5mm) on Top Overlay And Track (18.5mm,21.5mm)(39.4mm,21.5mm) on Top Overlay Silk Text to Silk Clearance [0.223mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1933.323mil|Location2.X=1944.573mil|Location1.Y=1752.249mil|Location2.Y=1763.499mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1933.323mil|Location2.X=1944.573mil|Location1.Y=1752.249mil|Location2.Y=1763.499mil|Absolute=True">Silk To Silk Clearance Constraint: (0.2mm &lt; 0.254mm) Between Text "+5V" (21.6mm,19.5mm) on Top Overlay And Track (19.85mm,19.05mm)(27.25mm,19.05mm) on Top Overlay Silk Text to Silk Clearance [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2504.218mil|Location2.X=2515.468mil|Location1.Y=1165.663mil|Location2.Y=1176.913mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2504.218mil|Location2.X=2515.468mil|Location1.Y=1165.663mil|Location2.Y=1176.913mil|Absolute=True">Silk To Silk Clearance Constraint: (0.2mm &lt; 0.254mm) Between Text "+5V" (38.6mm,6.6mm) on Top Overlay And Track (38.15mm,1.6mm)(38.15mm,7.35mm) on Top Overlay Silk Text to Silk Clearance [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2581.432mil|Location2.X=2592.682mil|Location1.Y=1155.824mil|Location2.Y=1167.074mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\My Files\GenInfy\PCB Designs\Power\Power_Distribution\Power_Distribution.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2581.432mil|Location2.X=2592.682mil|Location1.Y=1155.824mil|Location2.Y=1167.074mil|Absolute=True">Silk To Silk Clearance Constraint: (0.123mm &lt; 0.254mm) Between Text "+5V" (38.6mm,6.6mm) on Top Overlay And Track (40.5mm,1mm)(40.5mm,21.5mm) on Top Overlay Silk Text to Silk Clearance [0.123mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
